@@ -1,0 +1,52 @@
+<html>
+	<head>
+		{% if product %}
+		<title>{{ product }} - Trade Ticket</title>
+		{% else %}
+		<title>Trade Ticket</title>
+		{% endif %}
+	</head>
+	<body>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+			<h3>Book Trade</h3>
+			<table>
+				<tr>
+					<td>{{ form.buysell.label }}</td>
+                                        <td>{{ form.buysell() }}</td>
+                                        <td>{{ form.bond.label }}</td>
+                                        <td>{{ form.bond(size=32) }}</td>
+                                        <td>{{ form.quantity.label }}</td>
+                                        <td>{{ form.quantity(size=15) }}</td>
+                                </tr>
+				<tr>
+					<td>{{ form.book1.label }}</td>
+					<td>{{ form.book1() }}</td>
+					<td>{{ form.book2.label }}</td>
+                                        <td>{{ form.book2() }}</td>
+					<td>{{ form.account.label }}</td>
+                                        <td>{{ form.account() }}</td>
+				</tr>
+				<tr>
+                                        <td>{{ form.trade_date.label }}</td>
+                                        <td>{{ form.trade_date() }}</td>
+                                        <td>{{ form.settle_date.label }}</td>
+                                        <td>{{ form.settle_date() }}</td>
+                                </tr>
+			</table>
+			<p>{{ form.book_trade() }}</p>
+			<h3>Bulk Trade Booking</h3>
+			<p>{{ form.num_trades.label }} {{ form.num_trades(size=20) }}</p>
+			<p>{{ form.book_trades() }}</p>
+		</form>
+	</body>
+</html>
